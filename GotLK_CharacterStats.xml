@@ -1,0 +1,57 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui">
+    <Script file="GotLK_CharacterStats.lua"/>
+
+    <Frame name="GotLKStatsPanel" parent="PaperDollFrame" toplevel="true" hidden="true">
+        <Size><AbsDimension x="115" y="500"/></Size>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="PaperDollFrame" relativePoint="TOPRIGHT">
+                <Offset><AbsDimension x="-38" y="-33"/></Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="GotLKFrameTop" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+                    <Size><AbsDimension x="115" y="16"/></Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="GotLKStatsPanel"/>
+                    </Anchors>
+                    <TexCoords left="0" right="0.8984375" top="0" bottom="0.125"/>
+                </Texture>
+                <Texture name="GotLKFrameMiddle" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+                    <Size><AbsDimension x="115" y="371"/></Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="GotLKFrameTop" relativePoint="BOTTOMLEFT"/>
+                    </Anchors>
+                    <TexCoords left="0" right="0.8984375" top="0.125" bottom="0.484375"/>
+                </Texture>
+                <Texture name="GotLKFrameBottom" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+                    <Size><AbsDimension x="115" y="16"/></Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="GotLKFrameMiddle" relativePoint="BOTTOMLEFT"/>
+                    </Anchors>
+                    <TexCoords left="0" right="0.8984375" top="0.484375" bottom="0.608375"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames/>
+        <Scripts>
+            <OnLoad>
+                GotLK_InitCharacterPanel();
+            </OnLoad>
+        </Scripts>
+    </Frame>
+
+    <Button name="GotLK_TogglePanelButton" parent="PaperDollFrame" inherits="UIPanelButtonTemplate" text="Stats">
+        <Size><AbsDimension x="43" y="20"/></Size>
+        <Anchors>
+            <Anchor point="BOTTOMRIGHT">
+                <Offset><AbsDimension x="-46" y="86"/></Offset>
+            </Anchor>
+        </Anchors>
+        <Scripts>
+            <OnClick>
+                GotLK_ToggleStatsPanel();
+            </OnClick>
+        </Scripts>
+    </Button>
+</Ui>

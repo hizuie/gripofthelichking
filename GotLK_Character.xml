@@ -1,0 +1,117 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui">
+    <Script file="GotLK_Character.lua"/>
+
+    <Frame name="GotLK_AvgItemLevelIcon" parent="PaperDollFrame" hidden="false" enableMouse="true" frameStrata="HIGH">
+        <Size>
+            <AbsDimension x="24" y="24"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOPLEFT">
+                <Offset>
+                    <AbsDimension x="70" y="-143"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentTexture" file="Interface\Icons\Inv_helmet_54" setAllPoints="true"/>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString name="$parentText" inherits="GameFontHighlightTiny" justifyH="CENTER" justifyV="BOTTOM">
+                    <Anchors>
+                        <Anchor point="BOTTOM" relativePoint="BOTTOM">
+                            <Offset>
+                                <AbsDimension x="0" y="1"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>GotLK_UpdateAvgItemLevelDisplay(self);</OnLoad>
+            <OnShow>GotLK_UpdateAvgItemLevelDisplay(self);</OnShow>
+            <OnEnter>
+                GotLK_UpdateAvgItemLevelDisplay(self);
+                GotLK_ShowTooltip(self);
+            </OnEnter>
+            <OnLeave>GameTooltip:Hide();</OnLeave>
+        </Scripts>
+    </Frame>
+
+    <Frame name="GotLK_GearScoreIcon" parent="PaperDollFrame" hidden="false" enableMouse="true" frameStrata="HIGH">
+        <Size>
+            <AbsDimension x="24" y="24"/>
+        </Size>
+        <Anchors>
+            <Anchor point="BOTTOMLEFT" relativeTo="GotLK_AvgItemLevelIcon" relativePoint="TOPLEFT">
+                <Offset>
+                    <AbsDimension x="0" y="3"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentTexture" file="Interface\Icons\Inv_helmet_03" setAllPoints="true"/>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString name="$parentText" inherits="GameFontHighlightTiny" justifyH="CENTER" justifyV="BOTTOM">
+                    <Anchors>
+                        <Anchor point="BOTTOM" relativePoint="BOTTOM">
+                            <Offset>
+                                <AbsDimension x="0" y="1"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>GotLK_UpdateGearScoreDisplay(self);</OnLoad>
+            <OnShow>GotLK_UpdateGearScoreDisplay(self);</OnShow>
+            <OnEnter>
+                GotLK_UpdateGearScoreDisplay(self);
+                GotLK_ShowGearScoreTooltip(self);
+            </OnEnter>
+            <OnLeave>GameTooltip:Hide();</OnLeave>
+        </Scripts>
+    </Frame>
+
+    <Frame name="GotLK_DurabilityIcon" parent="PaperDollFrame" hidden="false" enableMouse="true" frameStrata="HIGH">
+        <Size>
+            <AbsDimension x="24" y="24"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="GotLK_AvgItemLevelIcon" relativePoint="BOTTOMLEFT">
+                <Offset>
+                    <AbsDimension x="0" y="-3"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentTexture" file="Interface\Icons\Inv_shield_04" setAllPoints="true"/>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString name="$parentText" inherits="GameFontHighlightTiny" justifyH="CENTER" justifyV="BOTTOM">
+                    <Anchors>
+                        <Anchor point="BOTTOM" relativePoint="BOTTOM">
+                            <Offset>
+                                <AbsDimension x="0" y="1"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>GotLK_UpdateDurabilityDisplay(self);</OnLoad>
+            <OnShow>GotLK_UpdateDurabilityDisplay(self);</OnShow>
+            <OnEnter>
+                GotLK_UpdateDurabilityDisplay(self);
+                GotLK_ShowDurabilityTooltip(self);
+            </OnEnter>
+            <OnLeave>GameTooltip:Hide();</OnLeave>
+        </Scripts>
+    </Frame>
+</Ui>

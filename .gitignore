@@ -1,0 +1,18 @@
+# Ignore VS Code settings
+.vscode/
+
+# Ignore WoW-specific cache files (if you’re testing locally)
+*.bak
+*.swp
+*.tmp
+
+# Ignore Lua compiled artifacts (rare but just in case)
+*.luac
+
+# Ignore system junk
+.DS_Store
+Thumbs.db
+
+# Ignore wowinterface or curse packaging metadata (if any)
+.wowpackage/
+.pkgmeta
