@@ -1,5 +1,4 @@
-local GotLK_VERSION = "1.2.0"
-local GotLK_AUTHOR = "@Hizuie"
+local ADDON_NAME = ...
 
 local topLevel = CreateFrame("Frame", "GotLKConfigCategory", UIParent)
 topLevel.name = "Grip of the Lich King"
@@ -10,8 +9,13 @@ overviewPanel.name = "Overview"
 overviewPanel.parent = topLevel.name
 InterfaceOptions_AddCategory(overviewPanel)
 
+local characterPanel = CreateFrame("Frame", "GotLKCharacterPanel", UIParent)
+characterPanel.name = "Character Info"
+characterPanel.parent = topLevel.name
+InterfaceOptions_AddCategory(characterPanel)
+
 local pouchPanel = CreateFrame("Frame", "GotLKPouchPanel", UIParent)
-pouchPanel.name = "Pouch"
+pouchPanel.name = "Currency Pouch"
 pouchPanel.parent = topLevel.name
 InterfaceOptions_AddCategory(pouchPanel)
 
@@ -26,6 +30,19 @@ local function SetPouchPanelEnabled(enabled)
         for _, child in ipairs(children) do SetDisabledRecursive(child, disable) end
     end
     SetDisabledRecursive(pouchPanel, not enabled)
+end
+
+local function SetCharacterPanelEnabled(enabled)
+    local alpha = enabled and 1 or 0.4
+    local function SetDisabledRecursive(frame, disable)
+        if frame.SetEnabled then frame:SetEnabled(not disable) end
+        if frame:IsObjectType("Button") or frame:IsObjectType("CheckButton") then frame:EnableMouse(not disable) end
+        local regions = { frame:GetRegions() }
+        for _, r in ipairs(regions) do if r.SetAlpha then r:SetAlpha(alpha) end end
+        local children = { frame:GetChildren() }
+        for _, child in ipairs(children) do SetDisabledRecursive(child, disable) end
+    end
+    SetDisabledRecursive(characterPanel, not enabled)
 end
 
 local title = overviewPanel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
@@ -62,11 +79,29 @@ local pouchEnableCheckbox = CreateFrame("CheckButton", "GotLKPouchEnableCheckbox
 pouchEnableCheckbox:SetPoint("TOPLEFT", subText, "BOTTOMLEFT", 0, -8)
 pouchEnableCheckbox.text = pouchEnableCheckbox:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
 pouchEnableCheckbox.text:SetPoint("LEFT", pouchEnableCheckbox, "RIGHT", 4, 1)
-pouchEnableCheckbox.text:SetText("Pouch")
+pouchEnableCheckbox.text:SetText("Currency Pouch")
+pouchEnableCheckbox:HookScript("OnEnter", function(self)
+    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+    GameTooltip:SetText("The Currency Pouch module lets you track\nyour currencies with an icon on the\nminimap border when hovered over.")
+    GameTooltip:Show()
+end)
+pouchEnableCheckbox:HookScript("OnLeave", function() GameTooltip:Hide() end)
+
+local characterEnableCheckbox = CreateFrame("CheckButton", "GotLKCharacterEnableCheckbox", overviewPanel, "InterfaceOptionsCheckButtonTemplate")
+characterEnableCheckbox:SetPoint("LEFT", pouchEnableCheckbox.text, "RIGHT", 110, 0)
+characterEnableCheckbox.text = characterEnableCheckbox:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+characterEnableCheckbox.text:SetPoint("LEFT", characterEnableCheckbox, "RIGHT", 4, 1)
+characterEnableCheckbox.text:SetText("Character Info")
+characterEnableCheckbox:HookScript("OnEnter", function(self)
+    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+    GameTooltip:SetText("The Character Info module provides a more\ncomplete overview of your own or others’\nstats and appearance.")
+    GameTooltip:Show()
+end)
+characterEnableCheckbox:HookScript("OnLeave", function() GameTooltip:Hide() end)
 
 local pouchTitle = pouchPanel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 pouchTitle:SetPoint("TOPLEFT", 16, -16)
-pouchTitle:SetText("Pouch")
+pouchTitle:SetText("Currency Pouch")
 
 local pouchStatus = pouchPanel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
 pouchStatus:SetPoint("TOPRIGHT", pouchTitle, "TOPRIGHT", 340, 0)
@@ -79,7 +114,7 @@ local pouchDesc = pouchPanel:CreateFontString(nil, "ARTWORK", "GameFontHighlight
 pouchDesc:SetPoint("TOPLEFT", pouchTitle, "BOTTOMLEFT", 0, -8)
 pouchDesc:SetWidth(560)
 pouchDesc:SetJustifyH("LEFT")
-pouchDesc:SetText("These options allow you to change the way the Pouch looks or behaves.")
+pouchDesc:SetText("These options allow you to change the way the Currency Pouch behaves.")
 
 local pouchIconDropdown = CreateFrame("Frame", "GotLKPouchIconDropdown", pouchPanel, "UIDropDownMenuTemplate")
 pouchIconDropdown:SetPoint("TOPLEFT", pouchDesc, "BOTTOMLEFT", -15, -12)
@@ -137,7 +172,6 @@ _G["GotLKPouchIconDropdownButton"]:HookScript("OnEnter", function(self)
     GameTooltip:SetText("Choose a pouch icon.")
     GameTooltip:Show()
 end)
-
 _G["GotLKPouchIconDropdownButton"]:HookScript("OnLeave", function()
     GameTooltip:Hide()
 end)
@@ -187,7 +221,7 @@ local hidePouchTitleCheckbox = CreateFrame("CheckButton", "GotLKPouchHidePouchTi
 hidePouchTitleCheckbox:SetPoint("TOPLEFT", hideMoneyCheckbox, "BOTTOMLEFT", 0, -8)
 hidePouchTitleCheckbox.text = hidePouchTitleCheckbox:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
 hidePouchTitleCheckbox.text:SetPoint("LEFT", hidePouchTitleCheckbox, "RIGHT", 4, 1)
-hidePouchTitleCheckbox.text:SetText("Hide Pouch Title")
+hidePouchTitleCheckbox.text:SetText("Hide Currency Pouch Title")
 hidePouchTitleCheckbox:SetScript("OnClick", function(self)
     GotLK_PouchDB.hidePouchTitle = self:GetChecked()
     if GotLK_Pouch and GameTooltip:IsOwned(GotLK_Pouch.button) then
@@ -224,6 +258,23 @@ showAPCheckbox:SetScript("OnClick", function(self)
     end
 end)
 
+local characterTitle = characterPanel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
+characterTitle:SetPoint("TOPLEFT", 16, -16)
+characterTitle:SetText("Character Info")
+
+local characterStatus = characterPanel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
+characterStatus:SetPoint("TOPRIGHT", characterTitle, "TOPRIGHT", 290, 0)
+characterStatus:SetJustifyH("RIGHT")
+characterStatus:SetText("Disabled")
+characterStatus:SetTextColor(1, 0, 0)
+characterStatus:Hide()
+
+local characterDesc = characterPanel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+characterDesc:SetPoint("TOPLEFT", characterTitle, "BOTTOMLEFT", 0, -8)
+characterDesc:SetWidth(560)
+characterDesc:SetJustifyH("LEFT")
+characterDesc:SetText("These options allow you to configure your or others' Character Info.")
+
 pouchEnableCheckbox:SetScript("OnClick", function(self)
     GotLK_PouchDB = GotLK_PouchDB or {}
     local checked = self:GetChecked()
@@ -240,6 +291,25 @@ pouchEnableCheckbox:SetScript("OnClick", function(self)
         pouchStatus:Show()
     end
     if TokenFrame_Update then TokenFrame_Update() end
+end)
+
+characterEnableCheckbox:SetScript("OnClick", function(self)
+    GotLK_CharacterDB = GotLK_CharacterDB or {}
+    local checked = self:GetChecked()
+    GotLK_CharacterDB.enabled = checked
+    if _G.GotLK_Character and _G.GotLK_Character.Enable then
+        if checked then _G.GotLK_Character:Enable() else _G.GotLK_Character:Disable() end
+    elseif _G.GotLK_CharacterStats and _G.GotLK_CharacterStats.Enable then
+        if checked then _G.GotLK_CharacterStats.Enable() else _G.GotLK_CharacterStats.Disable() end
+    end
+    SetCharacterPanelEnabled(checked)
+    if checked then
+        characterTitle:SetTextColor(1, 0.82, 0)
+        characterStatus:Hide()
+    else
+        characterTitle:SetTextColor(0.5, 0.5, 0.5)
+        characterStatus:Show()
+    end
 end)
 
 draggableCheckbox:SetScript("OnClick", function(self)
@@ -268,39 +338,49 @@ pouchPanel:SetScript("OnShow", function()
     end
     local selected = GotLK_PouchDB.icon or "Interface\\Icons\\inv_misc_bag_19"
     UIDropDownMenu_SetSelectedValue(pouchIconDropdown, selected)
+    for _, opt in ipairs(pouchIconOptions) do
+        if opt.value == selected then
+            UIDropDownMenu_SetText(pouchIconDropdown, opt.text)
+            break
+        end
+    end
     UpdatePouchIcon(selected)
 end)
 
 overviewPanel:SetScript("OnShow", function()
     GotLK_PouchDB = GotLK_PouchDB or {}
-    pouchEnableCheckbox:SetChecked(GotLK_PouchDB.enabled)
+    GotLK_CharacterDB = GotLK_CharacterDB or {}
+    pouchEnableCheckbox:SetChecked(GotLK_PouchDB.enabled or false)
+    SetPouchPanelEnabled(GotLK_PouchDB.enabled or false)
+    characterEnableCheckbox:SetChecked(GotLK_CharacterDB.enabled or false)
+    SetCharacterPanelEnabled(GotLK_CharacterDB.enabled or false)
 end)
 
-local init = CreateFrame("Frame")
-init:RegisterEvent("PLAYER_LOGIN")
-init:SetScript("OnEvent", function()
-    GotLK_PouchDB = GotLK_PouchDB or {}
-    if GotLK_Pouch then
-        if GotLK_PouchDB.enabled then GotLK_Pouch:Enable() else GotLK_Pouch:Disable() end
-        GotLK_Pouch:SetDraggable(GotLK_PouchDB.draggable or false)
-        if GotLK_PouchDB.icon then UpdatePouchIcon(GotLK_PouchDB.icon) end
+local function GotLK_ApplyCharacterState()
+    GotLK_CharacterDB = GotLK_CharacterDB or {}
+    local enabled = GotLK_CharacterDB.enabled or false
+    if _G.GotLK_Character and _G.GotLK_Character.Enable then
+        if enabled then _G.GotLK_Character:Enable() else _G.GotLK_Character:Disable() end
+    elseif _G.GotLK_CharacterStats and _G.GotLK_CharacterStats.Enable then
+        if enabled then _G.GotLK_CharacterStats.Enable() else _G.GotLK_CharacterStats.Disable() end
     end
-end)
-
-topLevel:SetScript("OnShow", function()
-    InterfaceOptionsFrame_OpenToCategory(GotLKOverviewPanel)
-end)
-
-local function AddFooter(panel)
-    local versionSeparator = panel:CreateTexture(nil, "ARTWORK")
-    versionSeparator:SetTexture(1, 1, 1, 0.25)
-    versionSeparator:SetSize(380, 1)
-    versionSeparator:SetPoint("BOTTOMLEFT", panel, "BOTTOMLEFT", 16, 36)
-    local versionText = panel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-    versionText:SetPoint("TOPLEFT", versionSeparator, "BOTTOMLEFT", 0, -8)
-    versionText:SetJustifyH("LEFT")
-    versionText:SetText("|cffa0a0a0v" .. GotLK_VERSION .. "|r")
 end
 
-AddFooter(overviewPanel)
-AddFooter(pouchPanel)
+local GotLK_Boot = CreateFrame("Frame")
+GotLK_Boot:RegisterEvent("PLAYER_LOGIN")
+GotLK_Boot:SetScript("OnEvent", function()
+    GotLK_ApplyCharacterState()
+end)
+
+characterPanel:SetScript("OnShow", function()
+    GotLK_CharacterDB = GotLK_CharacterDB or {}
+    local enabled = GotLK_CharacterDB.enabled or false
+    SetCharacterPanelEnabled(enabled)
+    if enabled then
+        characterTitle:SetTextColor(1, 0.82, 0)
+        characterStatus:Hide()
+    else
+        characterTitle:SetTextColor(0.5, 0.5, 0.5)
+        characterStatus:Show()
+    end
+end)

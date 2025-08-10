@@ -285,6 +285,8 @@ f:SetScript("OnEvent", function(self, event)
     end
 end)
 
+_G.GotLK_CharacterEventFrame = f
+
 retryFrame:Hide()
 retryFrame:SetScript("OnUpdate", function(self, elapsed)
     self.timer = (self.timer or 0) + elapsed
@@ -297,3 +299,37 @@ retryFrame:SetScript("OnUpdate", function(self, elapsed)
         end
     end
 end)
+
+_G.GotLK_Character = _G.GotLK_Character or {}
+local Character = _G.GotLK_Character
+
+function Character:Enable()
+    GotLK_CharacterDB = GotLK_CharacterDB or {}
+    GotLK_CharacterDB.enabled = true
+    if _G.GotLKFrame then _G.GotLKFrame:Show() end
+    if _G.GotLK_AvgItemLevelIcon then _G.GotLK_AvgItemLevelIcon:Show() end
+    if _G.GotLK_GearScoreIcon then _G.GotLK_GearScoreIcon:Show() end
+    if _G.GotLK_DurabilityIcon then _G.GotLK_DurabilityIcon:Show() end
+    if _G.GotLKButtonToggle then _G.GotLKButtonToggle:Show() end
+    if _G.GotLK_CharacterEventFrame then
+        local ef = _G.GotLK_CharacterEventFrame
+        ef:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+        ef:RegisterEvent("UNIT_INVENTORY_CHANGED")
+        ef:RegisterEvent("PLAYER_ENTERING_WORLD")
+        ef:RegisterEvent("GET_ITEM_INFO_RECEIVED")
+    end
+end
+
+function Character:Disable()
+    GotLK_CharacterDB = GotLK_CharacterDB or {}
+    GotLK_CharacterDB.enabled = false
+    if _G.GotLKFrame then _G.GotLKFrame:Hide() end
+    if _G.GotLK_AvgItemLevelIcon then _G.GotLK_AvgItemLevelIcon:Hide() end
+    if _G.GotLK_GearScoreIcon then _G.GotLK_GearScoreIcon:Hide() end
+    if _G.GotLK_DurabilityIcon then _G.GotLK_DurabilityIcon:Hide() end
+    if _G.GotLKButtonToggle then _G.GotLKButtonToggle:Hide() end
+    if _G.GotLK_CharacterEventFrame then
+        _G.GotLK_CharacterEventFrame:UnregisterAllEvents()
+    end
+end
+
