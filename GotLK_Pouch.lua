@@ -221,27 +221,13 @@ hooksecurefunc("TokenFrame_Update", function()
     for _, button in ipairs(buttons) do
         if button.isHeader or not button.name then
             if button.GotLK_PouchToggle then button.GotLK_PouchToggle:Hide() end
-            if button.GotLK_PouchIcon then button.GotLK_PouchIcon:Hide() end
         else
             local currencyName = button.name:GetText()
             if not currencyName then return end
-            if not button.GotLK_PouchIcon then
-                local icon = button:CreateTexture(nil, "ARTWORK")
-                icon:SetSize(12, 11)
-                icon:SetPoint("LEFT", button, "LEFT", 200, 0)
-                icon:SetTexture(GotLK_PouchDB.icon or minimapIcon)
-                button.GotLK_PouchIcon = icon
-            end
-            button.GotLK_PouchIcon:SetTexture(GotLK_PouchDB.icon or minimapIcon)
-            if GotLK_PouchDB.hideIcons then
-                button.GotLK_PouchIcon:Hide()
-            else
-                button.GotLK_PouchIcon:Show()
-            end
             if not button.GotLK_PouchToggle then
                 local toggle = CreateFrame("CheckButton", nil, button, "UICheckButtonTemplate")
                 toggle:SetSize(18, 18)
-                toggle:SetPoint("LEFT", button.GotLK_PouchIcon, "RIGHT", -28, 0)
+                toggle:SetPoint("LEFT", button, "LEFT", 170, 0)
                 toggle:SetScript("OnClick", function(self)
                     GotLK_Pouch:ToggleCurrency(currencyName)
                     self:SetChecked(GotLK_PouchDB.enabledCurrencies[currencyName])
