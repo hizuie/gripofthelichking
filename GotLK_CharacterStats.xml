@@ -1,57 +1,564 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui">
-    <Script file="GotLK_CharacterStats.lua"/>
+<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file="GotLK_CharacterStats.lua"/>
+  <Frame name="GotLKFrame" parent="PaperDollFrame" toplevel="true" hidden="true">
+    <Size>
+      <AbsDimension x="115" y="500"/>
+    </Size>
+    <Anchors>
+      <Anchor point="TOPLEFT" relativeTo="PaperDollFrame" relativePoint="TOPRIGHT">
+        <Offset>
+          <AbsDimension x="-35" y="-33"/>
+        </Offset>
+      </Anchor>
+    </Anchors>
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture name="GotLKFrameTop" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+          <Size>
+            <AbsDimension x="115" y="16"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="GotLKFrame"/>
+          </Anchors>
+          <TexCoords left="0" right="0.8984375" top="0" bottom="0.125"/>
+        </Texture>
+        <Texture name="GotLKFrameMiddle1" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+          <Size>
+            <AbsDimension x="115" y="53"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="GotLKFrameTop" relativePoint="BOTTOMLEFT"/>
+          </Anchors>
+          <TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+        </Texture>
+        <Texture name="GotLKFrameMiddle2" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+          <Size>
+            <AbsDimension x="115" y="53"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="GotLKFrameMiddle1" relativePoint="BOTTOMLEFT"/>
+          </Anchors>
+          <TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+        </Texture>
+        <Texture name="GotLKFrameMiddle3" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+          <Size>
+            <AbsDimension x="115" y="53"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="GotLKFrameMiddle2" relativePoint="BOTTOMLEFT"/>
+          </Anchors>
+          <TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+        </Texture>
+        <Texture name="GotLKFrameMiddle4" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+          <Size>
+            <AbsDimension x="115" y="53"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="GotLKFrameMiddle3" relativePoint="BOTTOMLEFT"/>
+          </Anchors>
+          <TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+        </Texture>
+        <Texture name="GotLKFrameMiddle5" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+          <Size>
+            <AbsDimension x="115" y="53"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="GotLKFrameMiddle4" relativePoint="BOTTOMLEFT"/>
+          </Anchors>
+          <TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+        </Texture>
+        <Texture name="GotLKFrameMiddle6" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+          <Size>
+            <AbsDimension x="115" y="53"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="GotLKFrameMiddle5" relativePoint="BOTTOMLEFT"/>
+          </Anchors>
+          <TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+        </Texture>
+        <Texture name="GotLKFrameMiddle7" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+          <Size>
+            <AbsDimension x="115" y="53"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="GotLKFrameMiddle6" relativePoint="BOTTOMLEFT"/>
+          </Anchors>
+          <TexCoords left="0" right="0.8984375" top="0.125" bottom="0.1953125"/>
+        </Texture>
+        <Texture name="GotLKFrameBottom" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
+          <Size>
+            <AbsDimension x="115" y="16"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="GotLKFrameMiddle7" relativePoint="BOTTOMLEFT"/>
+          </Anchors>
+          <TexCoords left="0" right="0.8984375" top="0.484375" bottom="0.609375"/>
+        </Texture>
+      </Layer>
+    </Layers>
 
-    <Frame name="GotLKStatsPanel" parent="PaperDollFrame" toplevel="true" hidden="true">
-        <Size><AbsDimension x="115" y="500"/></Size>
+    <Frames>
+      <Frame name="GotLKFrameStat1" inherits="StatFrameTemplate" id="1">
         <Anchors>
-            <Anchor point="TOPLEFT" relativeTo="PaperDollFrame" relativePoint="TOPRIGHT">
-                <Offset><AbsDimension x="-38" y="-33"/></Offset>
-            </Anchor>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="6" y="-13"/>
+            </Offset>
+          </Anchor>
         </Anchors>
         <Layers>
-            <Layer level="BACKGROUND">
-                <Texture name="GotLKFrameTop" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
-                    <Size><AbsDimension x="115" y="16"/></Size>
-                    <Anchors>
-                        <Anchor point="TOPLEFT" relativeTo="GotLKStatsPanel"/>
-                    </Anchors>
-                    <TexCoords left="0" right="0.8984375" top="0" bottom="0.125"/>
-                </Texture>
-                <Texture name="GotLKFrameMiddle" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
-                    <Size><AbsDimension x="115" y="371"/></Size>
-                    <Anchors>
-                        <Anchor point="TOPLEFT" relativeTo="GotLKFrameTop" relativePoint="BOTTOMLEFT"/>
-                    </Anchors>
-                    <TexCoords left="0" right="0.8984375" top="0.125" bottom="0.484375"/>
-                </Texture>
-                <Texture name="GotLKFrameBottom" file="Interface\PaperDollInfoFrame\UI-Character-StatBackground">
-                    <Size><AbsDimension x="115" y="16"/></Size>
-                    <Anchors>
-                        <Anchor point="TOPLEFT" relativeTo="GotLKFrameMiddle" relativePoint="BOTTOMLEFT"/>
-                    </Anchors>
-                    <TexCoords left="0" right="0.8984375" top="0.484375" bottom="0.608375"/>
-                </Texture>
-            </Layer>
+          <Layer level="BACKGROUND">
+            <FontString name="GotLKFrameLabelStats" inherits="GameFontHighlightSmall" text="Base">
+              <Anchors>
+                <Anchor point="BOTTOMLEFT" relativeTo="GotLKFrameStat1" relativePoint="TOPLEFT">
+                  <Offset>
+                    <AbsDimension x="0" y="-2"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+            </FontString>
+            <Texture name="GotLKFrameLabelStatsLine" file="Interface\Buttons\WHITE8x8">
+              <Anchors>
+                <Anchor point="LEFT" relativeTo="GotLKFrameLabelStats" relativePoint="RIGHT">
+                  <Offset>
+                    <AbsDimension x="6" y="0"/>
+                  </Offset>
+                </Anchor>
+                <Anchor point="RIGHT" relativeTo="GotLKFrame" relativePoint="TOPRIGHT">
+                  <Offset>
+                    <AbsDimension x="-6" y="-14"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+              <Size>
+                <AbsDimension x="0" y="1"/>
+              </Size>
+              <Color r="1" g="1" b="1" a="0.25"/>
+            </Texture>
+          </Layer>
         </Layers>
-        <Frames/>
-        <Scripts>
-            <OnLoad>
-                GotLK_InitCharacterPanel();
-            </OnLoad>
-        </Scripts>
-    </Frame>
+      </Frame>
 
-    <Button name="GotLK_TogglePanelButton" parent="PaperDollFrame" inherits="UIPanelButtonTemplate" text="Stats">
-        <Size><AbsDimension x="43" y="20"/></Size>
+      <Frame name="GotLKFrameStat2" inherits="StatFrameTemplate" id="2">
         <Anchors>
-            <Anchor point="BOTTOMRIGHT">
-                <Offset><AbsDimension x="-46" y="86"/></Offset>
-            </Anchor>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStat1" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
         </Anchors>
-        <Scripts>
-            <OnClick>
-                GotLK_ToggleStatsPanel();
-            </OnClick>
-        </Scripts>
-    </Button>
+      </Frame>
+
+      <Frame name="GotLKFrameStat3" inherits="StatFrameTemplate" id="3">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStat2" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStat4" inherits="StatFrameTemplate" id="4">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStat3" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStat5" inherits="StatFrameTemplate" id="5">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStat4" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatArmor" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStat5" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="-11"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <FontString name="GotLKFrameLabelDefense" inherits="GameFontHighlightSmall" text="Defenses">
+              <Anchors>
+                <Anchor point="BOTTOMLEFT" relativeTo="GotLKFrameStatArmor" relativePoint="TOPLEFT">
+                  <Offset>
+                    <AbsDimension x="0" y="-2"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+            </FontString>
+            <Texture name="GotLKFrameLabelDefenseLine" file="Interface\Buttons\WHITE8x8">
+              <Anchors>
+                <Anchor point="LEFT" relativeTo="GotLKFrameLabelDefense" relativePoint="RIGHT">
+                  <Offset>
+                    <AbsDimension x="6" y="0"/>
+                  </Offset>
+                </Anchor>
+                <Anchor point="RIGHT" relativeTo="GotLKFrame" relativePoint="TOPRIGHT">
+                  <Offset>
+                    <AbsDimension x="-6" y="-14"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+              <Size>
+                <AbsDimension x="0" y="1"/>
+              </Size>
+              <Color r="1" g="1" b="1" a="0.25"/>
+            </Texture>
+          </Layer>
+        </Layers>
+      </Frame>
+
+      <Frame name="GotLKFrameStatDefense" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatArmor" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatDodge" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatDefense" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatParry" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatDodge" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatBlock" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatParry" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatResil" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatBlock" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatMeleeDamage" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatResil" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="-11"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <FontString name="GotLKFrameLabelMelee" inherits="GameFontHighlightSmall" text="Melee">
+              <Anchors>
+                <Anchor point="BOTTOMLEFT" relativeTo="GotLKFrameStatMeleeDamage" relativePoint="TOPLEFT">
+                  <Offset>
+                    <AbsDimension x="0" y="-2"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+            </FontString>
+            <Texture name="GotLKFrameLabelMeleeLine" file="Interface\Buttons\WHITE8x8">
+              <Anchors>
+                <Anchor point="LEFT" relativeTo="GotLKFrameLabelMelee" relativePoint="RIGHT">
+                  <Offset>
+                    <AbsDimension x="6" y="0"/>
+                  </Offset>
+                </Anchor>
+                <Anchor point="RIGHT" relativeTo="GotLKFrame" relativePoint="TOPRIGHT">
+                  <Offset>
+                    <AbsDimension x="-6" y="-14"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+              <Size>
+                <AbsDimension x="0" y="1"/>
+              </Size>
+              <Color r="1" g="1" b="1" a="0.25"/>
+            </Texture>
+          </Layer>
+        </Layers>
+      </Frame>
+
+      <Frame name="GotLKFrameStatMeleeSpeed" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatMeleeDamage" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatMeleePower" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatMeleeSpeed" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatMeleeHit" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatMeleePower" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatMeleeCrit" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatMeleeHit" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatMeleeExpert" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatMeleeCrit" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatRangeDamage" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatMeleeExpert" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="-11"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <FontString name="GotLKFrameLabelRange" inherits="GameFontHighlightSmall" text="Ranged">
+              <Anchors>
+                <Anchor point="BOTTOMLEFT" relativeTo="GotLKFrameStatRangeDamage" relativePoint="TOPLEFT">
+                  <Offset>
+                    <AbsDimension x="0" y="-2"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+            </FontString>
+            <Texture name="GotLKFrameLabelRangeLine" file="Interface\Buttons\WHITE8x8">
+              <Anchors>
+                <Anchor point="LEFT" relativeTo="GotLKFrameLabelRange" relativePoint="RIGHT">
+                  <Offset>
+                    <AbsDimension x="6" y="0"/>
+                  </Offset>
+                </Anchor>
+                <Anchor point="RIGHT" relativeTo="GotLKFrame" relativePoint="TOPRIGHT">
+                  <Offset>
+                    <AbsDimension x="-6" y="-14"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+              <Size>
+                <AbsDimension x="0" y="1"/>
+              </Size>
+              <Color r="1" g="1" b="1" a="0.25"/>
+            </Texture>
+          </Layer>
+        </Layers>
+      </Frame>
+
+      <Frame name="GotLKFrameStatRangeSpeed" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatRangeDamage" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatRangePower" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatRangeSpeed" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatRangeHit" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatRangePower" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatRangeCrit" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatRangeHit" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatSpellDamage" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatRangeCrit" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="-11"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <FontString name="GotLKFrameLabelSpell" inherits="GameFontHighlightSmall" text="Spell">
+              <Anchors>
+                <Anchor point="BOTTOMLEFT" relativeTo="GotLKFrameStatSpellDamage" relativePoint="TOPLEFT">
+                  <Offset>
+                    <AbsDimension x="0" y="-2"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+            </FontString>
+            <Texture name="GotLKFrameLabelSpellLine" file="Interface\Buttons\WHITE8x8">
+              <Anchors>
+                <Anchor point="LEFT" relativeTo="GotLKFrameLabelSpell" relativePoint="RIGHT">
+                  <Offset>
+                    <AbsDimension x="6" y="0"/>
+                  </Offset>
+                </Anchor>
+                <Anchor point="RIGHT" relativeTo="GotLKFrame" relativePoint="TOPRIGHT">
+                  <Offset>
+                    <AbsDimension x="-6" y="-14"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+              <Size>
+                <AbsDimension x="0" y="1"/>
+              </Size>
+              <Color r="1" g="1" b="1" a="0.25"/>
+            </Texture>
+          </Layer>
+        </Layers>
+      </Frame>
+
+      <Frame name="GotLKFrameStatSpellHeal" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatSpellDamage" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatSpellHit" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatSpellHeal" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatSpellCrit" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatSpellHit" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatSpellHaste" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatSpellCrit" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+
+      <Frame name="GotLKFrameStatSpellRegen" inherits="StatFrameTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="GotLKFrameStatSpellHaste" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="0" y="1"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Frame>
+    </Frames>
+
+    <Scripts>
+      <OnLoad>
+        GotLK_OnLoad();
+      </OnLoad>
+      <OnShow>
+        GotLK_DisplayStats();
+      </OnShow>
+    </Scripts>
+  </Frame>
+
+  <Button name="GotLKButtonToggle" parent="PaperDollFrame" inherits="UIPanelButtonTemplate" text="Stats">
+    <Size>
+      <AbsDimension x="38" y="22"/>
+    </Size>
+    <Anchors>
+      <Anchor point="BOTTOMRIGHT">
+        <Offset>
+          <AbsDimension x="-43" y="85"/>
+        </Offset>
+      </Anchor>
+    </Anchors>
+    <Scripts>
+      <OnClick>
+        GotLK_TogglePanel_OnClick();
+      </OnClick>
+    </Scripts>
+  </Button>
 </Ui>

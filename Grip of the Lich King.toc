@@ -2,9 +2,10 @@
 ## Title: Grip of the Lich King
 ## Notes: A better and Blizzlike grip on displayed information, visuals and interactions.
 ## Author: Hizuie
-## Version: 1.0.0
-## SavedVariablesPerCharacter: GotLK_PouchDB, GotLK_BestiaryDB
+## Version: 1.2.0
+## SavedVariablesPerCharacter: GotLK_PouchDB, GotLK_CharacterDB
 
+GotLK_VCupdate.lua
 GotLK_Pouch.lua
 GotLK_AddOpt.lua
 GotLK_Config.lua

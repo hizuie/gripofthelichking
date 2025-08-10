@@ -1,4 +1,4 @@
-local GotLK_VERSION = "1.0.0"
+local GotLK_VERSION = "1.2.0"
 local GotLK_AUTHOR = "@Hizuie"
 
 local topLevel = CreateFrame("Frame", "GotLKConfigCategory", UIParent)
@@ -299,7 +299,7 @@ local function AddFooter(panel)
     local versionText = panel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
     versionText:SetPoint("TOPLEFT", versionSeparator, "BOTTOMLEFT", 0, -8)
     versionText:SetJustifyH("LEFT")
-    versionText:SetText("|cffa0a0a0Version " .. GotLK_VERSION .. "|r")
+    versionText:SetText("|cffa0a0a0v" .. GotLK_VERSION .. "|r")
 end
 
 AddFooter(overviewPanel)
