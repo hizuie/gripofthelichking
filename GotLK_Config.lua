@@ -174,6 +174,15 @@ hideMoneyCheckbox:SetScript("OnClick", function(self)
     end
 end)
 
+local hideNotifsCheck = CreateFrame("CheckButton", "GotLKPouchHideNotificationsCheckbox", pouchPanel, "InterfaceOptionsCheckButtonTemplate")
+hideNotifsCheck:SetPoint("LEFT", hideMoneyCheckbox.text, "RIGHT", 110, 0)
+hideNotifsCheck.text = hideNotifsCheck:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+hideNotifsCheck.text:SetPoint("LEFT", hideNotifsCheck, "RIGHT", 4, 1)
+hideNotifsCheck.text:SetText("Hide Notifications")
+hideNotifsCheck:SetScript("OnClick", function(self)
+    GotLK_PouchDB.hideNotifications = self:GetChecked()
+end)
+
 local hidePouchTitleCheckbox = CreateFrame("CheckButton", "GotLKPouchHidePouchTitleCheckbox", pouchPanel, "InterfaceOptionsCheckButtonTemplate")
 hidePouchTitleCheckbox:SetPoint("TOPLEFT", hideMoneyCheckbox, "BOTTOMLEFT", 0, -8)
 hidePouchTitleCheckbox.text = hidePouchTitleCheckbox:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
@@ -245,6 +254,7 @@ pouchPanel:SetScript("OnShow", function()
     GotLK_PouchDB = GotLK_PouchDB or {}
     draggableCheckbox:SetChecked(GotLK_PouchDB.draggable or false)
     hideMoneyCheckbox:SetChecked(GotLK_PouchDB.hideMoney or false)
+    hideNotifsCheck:SetChecked(GotLK_PouchDB.hideNotifications or false)
     hidePouchTitleCheckbox:SetChecked(GotLK_PouchDB.hidePouchTitle or false)
     hideIconsCheckbox:SetChecked(GotLK_PouchDB.hideIcons or false)
     showAPCheckbox:SetChecked(GotLK_PouchDB.showAchievementPoints or false)
