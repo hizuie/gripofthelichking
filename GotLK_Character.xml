@@ -14,7 +14,7 @@
         </Anchors>
         <Layers>
             <Layer level="BACKGROUND">
-                <Texture name="$parentTexture" file="Interface\Icons\Inv_helmet_54" setAllPoints="true"/>
+                <Texture name="$parentTexture" file="Interface\Icons\ability_warrior_defensivestance" setAllPoints="true"/>
             </Layer>
             <Layer level="OVERLAY">
                 <FontString name="$parentText" inherits="GameFontHighlightTiny" justifyH="CENTER" justifyV="BOTTOM">
@@ -52,7 +52,7 @@
         </Anchors>
         <Layers>
             <Layer level="BACKGROUND">
-                <Texture name="$parentTexture" file="Interface\Icons\Inv_helmet_03" setAllPoints="true"/>
+                <Texture name="$parentTexture" file="Interface\Icons\spell_magic_magearmor" setAllPoints="true"/>
             </Layer>
             <Layer level="OVERLAY">
                 <FontString name="$parentText" inherits="GameFontHighlightTiny" justifyH="CENTER" justifyV="BOTTOM">
@@ -90,7 +90,7 @@
         </Anchors>
         <Layers>
             <Layer level="BACKGROUND">
-                <Texture name="$parentTexture" file="Interface\Icons\Inv_shield_04" setAllPoints="true"/>
+                <Texture name="$parentTexture" file="Interface\Icons\trade_blacksmithing" setAllPoints="true"/>
             </Layer>
             <Layer level="OVERLAY">
                 <FontString name="$parentText" inherits="GameFontHighlightTiny" justifyH="CENTER" justifyV="BOTTOM">
@@ -114,4 +114,6 @@
             <OnLeave>GameTooltip:Hide();</OnLeave>
         </Scripts>
     </Frame>
+
+    
 </Ui>
