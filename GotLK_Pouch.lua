@@ -288,7 +288,7 @@ function GotLK_Pouch:AcquireMsgFrame()
     f.text:SetAllPoints(f)
     f:Hide()
     f.elapsed = 0
-    f.visibleFor = 3.0
+    f.visibleFor = 4.5
     f.fadeFor = 1.5
     self.msgFrame = f
     self.currentKey = nil
@@ -324,7 +324,9 @@ function GotLK_Pouch:FormatCurrentText()
         return sign .. " " .. MoneyToCoinTexture(amt), (isGain and 0 or 1), (isGain and 1 or 0.1), (isGain and 0 or 0.1)
     else
         local prefix = self.currentIcon and ("|T" .. self.currentIcon .. ":16:16:0:0|t ") or ""
-        return sign .. " " .. prefix .. tostring(amt), (isGain and 0 or 1), (isGain and 1 or 0.1), (isGain and 0 or 0.1)
+        local name = self.currentKey or ""
+        return sign .. prefix .. tostring(amt) .. " " .. name,
+            (isGain and 0 or 1), (isGain and 1 or 0.1), (isGain and 0 or 0.1)
     end
 end
 
